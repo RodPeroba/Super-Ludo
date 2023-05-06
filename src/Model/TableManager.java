@@ -27,4 +27,29 @@ public final class TableManager {
 			return peao;
 			
 		}
+		
+		void movePeao(int posicao,int dado) {
+			
+			int novaPosicao = posicao + dado;
+			if (novaPosicao < 44) {
+				// movimentacao do tabuleiro basico para tabuleiro basico
+				Peao peao = tabuleiro.tabuleiro_basico[posicao].peoes.get(0);
+				if (tabuleiro.tabuleiro_basico[novaPosicao].isEmpty()) {
+					tabuleiro.tabuleiro_basico[novaPosicao].peoes.add(peao);
+					peao.posicao = tabuleiro.tabuleiro_basico[novaPosicao];
+				}
+				//caso nao esteja vazio mas ainda possa andar
+				//else if() {}
+				//else {}
+				//caso nao possa se mover para a posica
+			}
+			
+			//entrada na reta final
+			//else if(){}
+			
+			//da reta final pra reta final
+			//else {}
+				
+		}
+		
 }

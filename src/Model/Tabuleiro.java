@@ -5,10 +5,7 @@ public class Tabuleiro {
 		int tamanhoTabuleiro = 43;
 		int tamanhoRetaFinal = 7;
 		protected Tile[] tabuleiro_basico = new Tile[tamanhoTabuleiro];
-		protected Tile[] reta_final_azul = new Tile[tamanhoRetaFinal];
-		protected Tile[] reta_final_vermelho = new Tile[tamanhoRetaFinal];
-		protected Tile[] reta_final_amarelo = new Tile[tamanhoRetaFinal];
-		protected Tile[] reta_final_verde = new Tile[tamanhoRetaFinal];
+		protected Tile[] reta_final = new Tile[tamanhoRetaFinal];
 		
 		public Tabuleiro() {
 			povoa_tabuleiro();
@@ -20,17 +17,9 @@ public class Tabuleiro {
 				tabuleiro_basico[i] = new Tile();
 			}
 			for (int i = 0;i < tamanhoRetaFinal;i++) {
-				reta_final_azul[i] = new Tile();
+				reta_final[i] = new Tile();
 			}
-			for (int i = 0;i < tamanhoRetaFinal;i++) {
-				reta_final_vermelho[i] = new Tile();
-			}
-			for (int i = 0;i < tamanhoRetaFinal;i++) {
-				reta_final_amarelo[i] = new Tile();
-			}
-			for (int i = 0;i < tamanhoRetaFinal;i++) {
-				reta_final_verde[i] = new Tile();
-			}
+
 		}
 		private void linkaTabuleiro() { //TODO linkar o anterior
 			for(int i = 0;i < tamanhoTabuleiro-1;i++) {//vai ate o penultimo
@@ -44,7 +33,7 @@ public class Tabuleiro {
 		
 		Tile getCasa(int casa, boolean retaFinal) {
 			if (retaFinal) {
-				return reta_final_azul[casa]; //TODO Rever necessidade de reta final de varias cores
+				return reta_final[casa];
 			}
 			else {
 				return tabuleiro_basico[casa];

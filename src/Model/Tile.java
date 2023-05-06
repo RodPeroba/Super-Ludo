@@ -8,4 +8,10 @@ public class Tile {
 	Tile anterior;
 	Tile proximo;
 	
+	boolean isEmpty() {
+		if (peoes.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
 }
