@@ -2,16 +2,17 @@ package Model;
 
 public class Tabuleiro {
 		
-		int tamanhoTabuleiro = 32;
+		int tamanhoTabuleiro = 43;
 		int tamanhoRetaFinal = 7;
-		private Tile[] tabuleiro_basico ;
-		private Tile[] reta_final_azul ;
-		private Tile[] reta_final_vermelho;
-		private Tile[] reta_final_amarelo;
-		private Tile[] reta_final_verde;
+		protected Tile[] tabuleiro_basico = new Tile[tamanhoTabuleiro];
+		protected Tile[] reta_final_azul = new Tile[tamanhoRetaFinal];
+		protected Tile[] reta_final_vermelho = new Tile[tamanhoRetaFinal];
+		protected Tile[] reta_final_amarelo = new Tile[tamanhoRetaFinal];
+		protected Tile[] reta_final_verde = new Tile[tamanhoRetaFinal];
 		
 		public Tabuleiro() {
 			povoa_tabuleiro();
+			linkaTabuleiro();
 		}
 		
 		private void povoa_tabuleiro() {
@@ -30,5 +31,11 @@ public class Tabuleiro {
 			for (int i = 0;i < tamanhoRetaFinal;i++) {
 				reta_final_verde[i] = new Tile();
 			}
+		}
+		private void linkaTabuleiro() { //TODO linkar o anterior
+			for(int i = 0;i < tamanhoTabuleiro-1;i++) {//vai ate o penultimo
+				tabuleiro_basico[i].proximo = tabuleiro_basico[i+1];
+			}
+			tabuleiro_basico[tamanhoTabuleiro-1].proximo = tabuleiro_basico[0];
 		}
 }
