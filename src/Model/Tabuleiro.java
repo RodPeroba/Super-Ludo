@@ -38,4 +38,16 @@ public class Tabuleiro {
 			}
 			tabuleiro_basico[tamanhoTabuleiro-1].proximo = tabuleiro_basico[0];
 		}
+		protected void adiciona_peao(Peao peao, int posicao) {
+			tabuleiro_basico[posicao].peoes.add(peao);
+		}
+		
+		Tile getCasa(int casa, boolean retaFinal) {
+			if (retaFinal) {
+				return reta_final_azul[casa]; //TODO Rever necessidade de reta final de varias cores
+			}
+			else {
+				return tabuleiro_basico[casa];
+			}
+		}
 }
