@@ -28,28 +28,23 @@ public final class TableManager {
 			
 		}
 		
-		void movePeao(int posicao,int dado) {
+		void movePeao(Peao peao,int dado) {
 			
-			int novaPosicao = posicao + dado;
-			if (novaPosicao < 44) {
-				// movimentacao do tabuleiro basico para tabuleiro basico
-				Peao peao = tabuleiro.tabuleiro_basico[posicao].peoes.get(0);
-				if (tabuleiro.tabuleiro_basico[novaPosicao].isEmpty()) {
-					tabuleiro.tabuleiro_basico[novaPosicao].peoes.add(peao);
-					peao.posicao = tabuleiro.tabuleiro_basico[novaPosicao];
+			for (int i = 0;i < dado;i++) {
+				peao.posicao.peoes.remove(peao);
+				if (peao.posicao.proximo.equals(tabuleiro.tabuleiro_basico[casa_inicial[peao.cor]])) {
+					//entra na reta final
+					peao.posicao = tabuleiro.reta_final[0];
+					tabuleiro.reta_final[0].peoes.add(peao);
 				}
-				//caso nao esteja vazio mas ainda possa andar
-				//else if() {}
-				//else {}
-				//caso nao possa se mover para a posica
+				else {
+					//anda pra frente
+					peao.posicao = peao.posicao.proximo;
+					peao.posicao.proximo.peoes.add(peao);
+				}
 			}
 			
-			//entrada na reta final
-			//else if(){}
-			
-			//da reta final pra reta final
-			//else {}
-				
+
 		}
 		
 }
