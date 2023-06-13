@@ -8,17 +8,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class mainPanel extends JPanel{
+public class MainPanel extends JPanel{
 	
 	Image imagem;
-	
-	public mainPanel() {
-	
+	Graphics g2d;
+	public MainPanel() {
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension screenSize = tk.getScreenSize();
+		setBounds(0,0, screenSize.width, screenSize.height);
 	}
-	
+		
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;
+		g2d = (Graphics2D) g;
 		try {
 			//TODO RESOLVER A PATH TER QUE SER COMPLETA
 			imagem = ImageIO.read(new File ("C:\\Users\\Rodrigo Peroba\\eclipse-workspace\\Ludo\\src\\TabuleiroLudo.jpg"));
@@ -29,5 +31,9 @@ public class mainPanel extends JPanel{
 		}
 		g2d.drawImage(imagem,0,0,660,660,null);
 		
+	}
+	
+	public void drawDice(Image dice) {
+		g2d.drawImage(dice, 450, 850,200,200, null);
 	}
 }

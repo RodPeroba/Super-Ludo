@@ -10,7 +10,7 @@ public class mainWindow extends JFrame {
 	public final int BUTTON_HEIGHT = 40;
 	public final int BUTTON_WIDTH = 120;
 	
-	JPanel panel = new mainPanel();
+	JPanel panel = new MainPanel();
 	
 	public mainWindow() {
 		super();
@@ -24,6 +24,9 @@ public class mainWindow extends JFrame {
 	    setResizable(false);
 	    panel.setLayout(null);
 	    
+	    //DicePanel
+
+	    
 	    //NovoJogo
 	    newGameButton = new JButton("Novo Jogo");
 	    panel.add(newGameButton);
@@ -36,7 +39,8 @@ public class mainWindow extends JFrame {
 	    //À jogar
 	    
 	    //Lança Dado
-	    diceButton = new JButton("Jogar o Dado");
+	    diceButton = new JButton ("Jogar o Dado");
+	    diceButton.addActionListener(new DadoListener(this));
 	    panel.add(diceButton);
 	    
 	    Insets in = panel.getInsets();
