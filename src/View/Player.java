@@ -9,21 +9,24 @@ public class Player {
 	private final int size = 30;
 	private int posX;
 	private int posY;
-	private Color cor;
-	Graphics2D g2d;
-	
-	public Player(int x, int y,Color color, Graphics2D g) {
-		posX = x;
-		posY = y;
-		cor = color;
-		g2d = g;
+	private Color color;
+	Graphics2D graphics;
+
+	public Player(int x, int y,Color color, Graphics2D graphics) {
+		this.posX = x;
+		this.posY = y;
+		this.color = color;
+		this.graphics = graphics;
 	}
 	
 	void draw() {
-		Ellipse2D player;
-		player = new Ellipse2D.Float(posX, posY, size, size);
-		g2d.setColor(cor);
-		g2d.fill(player);
+		Ellipse2D player = createPlayerShape();
+		graphics.setColor(color);
+		graphics.fill(player);
+	}
+
+	private Ellipse2D createPlayerShape() {
+		return new Ellipse2D.Float(posX, posY, size, size);
 	}
 	
 }

@@ -1,42 +1,44 @@
 package Model;
 
 public class Tabuleiro {
-		
-		int tamanhoTabuleiro = 43;
-		int tamanhoRetaFinal = 7;
-		protected Tile[] tabuleiro_basico = new Tile[tamanhoTabuleiro];
-		protected Tile[] reta_final = new Tile[tamanhoRetaFinal];
+
+		private static final int TAMANHO_TABULEIRO = 43;
+    private static final int TAMANHO_RETA_FINAL = 7;
+
+		protected Tile[] tabuleiroBasico = new Tile[TAMANHO_TABULEIRO];
+		protected Tile[] retaFinal = new Tile[TAMANHO_RETA_FINAL];
 		
 		public Tabuleiro() {
-			povoa_tabuleiro();
-			linkaTabuleiro();
+        povoaTabuleiro();
+        conectaTilesTabuleiro();
 		}
 		
-		private void povoa_tabuleiro() {
-			for(int i = 0;i < tamanhoTabuleiro;i++) {
-				tabuleiro_basico[i] = new Tile();
+		private void povoaTabuleiro() {
+			for(int i = 0;i < TAMANHO_TABULEIRO;i++) {
+				tabuleiroBasico[i] = new Tile();
 			}
-			for (int i = 0;i < tamanhoRetaFinal;i++) {
-				reta_final[i] = new Tile();
+			for (int i = 0;i < TAMANHO_RETA_FINAL;i++) {
+				retaFinal[i] = new Tile();
 			}
 
 		}
-		private void linkaTabuleiro() { //TODO linkar o anterior
-			for(int i = 0;i < tamanhoTabuleiro-1;i++) {//vai ate o penultimo
-				tabuleiro_basico[i].proximo = tabuleiro_basico[i+1];
-			}
-			tabuleiro_basico[tamanhoTabuleiro-1].proximo = tabuleiro_basico[0];
+		private void conectaTilesTabuleiro() { //TODO linkar o anterior
+		 for(int i = 0; i < TAMANHO_TABULEIRO - 1; i++) {
+            tabuleiroBasico[i].setProximo(tabuleiroBasico[i + 1]);
+        }
+        tabuleiroBasico[TAMANHO_TABULEIRO - 1].setProximo(tabuleiroBasico[0]);
 		}
-		protected void adiciona_peao(Peao peao, int posicao) {
-			tabuleiro_basico[posicao].peoes.add(peao);
-		}
+
+    public void adicionaPeao(Peao peao, int posicao) {
+        tabuleiroBasico[posicao].adicionaPeao(peao);
+    }
 		
-		Tile getCasa(int casa, boolean retaFinal) {
-			if (retaFinal) {
-				return reta_final[casa];
+		Tile getCasa(int casa, boolean isRetaFinal) {
+			if (isRetaFinal) {
+				return retaFinal[casa];
 			}
 			else {
-				return tabuleiro_basico[casa];
+				return tabuleiroBasico[casa];
 			}
 		}
 }

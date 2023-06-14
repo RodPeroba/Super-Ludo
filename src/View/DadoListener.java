@@ -31,9 +31,8 @@ public class DadoListener implements ActionListener {
 			System.out.println(e1.getMessage());
 			System.exit(2);
 		}
-		//Desenhar o dado
-
-		//TODO o dado nao aparece
+		
+			
 	}
 
 }
