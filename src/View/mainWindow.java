@@ -3,7 +3,7 @@ package View;
 import java.awt.*;
 import javax.swing.*;
 
-public class mainWindow extends JFrame {
+public class MainWindow extends JFrame {
 	
 	public final int LARGURA = 1200;
 	public final int ALTURA = 700;
@@ -12,7 +12,7 @@ public class mainWindow extends JFrame {
 	
 	JPanel panel = new MainPanel();
 	
-	public mainWindow() {
+	public MainWindow() {
 		super();
 
 		JButton newGameButton, continueButton, saveButton, diceButton;
@@ -22,10 +22,6 @@ public class mainWindow extends JFrame {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    getContentPane().add(panel);
 	    setResizable(false);
-	    panel.setLayout(null);
-	    
-	    //DicePanel
-
 	    
 	    //NovoJogo
 	    newGameButton = new JButton("Novo Jogo");

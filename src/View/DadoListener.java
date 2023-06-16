@@ -1,15 +1,13 @@
 package View;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class DadoListener implements ActionListener {
 	Component c;
@@ -31,8 +29,9 @@ public class DadoListener implements ActionListener {
 			System.out.println(e1.getMessage());
 			System.exit(2);
 		}
-		
-			
+		//Desenhar o dado
+
+		//TODO o dado nao aparece
 	}
 
 }
