@@ -1,50 +1,51 @@
 package Model;
 
-public final class TableManager {
+import java.util.List;
+import java.util.ArrayList;
 
-		Tabuleiro tabuleiro;
-		int casaInicial[] = {0,12,24,32}; 
-		
-		Peao jogadores[];
-		
-		public TableManager() {
-			tabuleiro = new Tabuleiro();
-			for(int i = 0; i < 4; i++) {
-				for(int j = 0; j < 4; j++) {
-					Tile casaDoPeao = tabuleiro.getCasa(casaInicial[i], false);
-					Peao novoPeao = criaPeao(i, casaDoPeao);
-					tabuleiro.adicionaPeao(novoPeao, i);
-					System.out.printf("Novo peao da cor %d na casa %d adicionado \n", i, casaInicial[i]);
-				}
-			}
-			
-		}
-		
-		Peao criaPeao(int cor, Tile tile) {
-			Peao peao = new Peao(cor);
-			peao.posicao = tile;
-			return peao;
-			
-		}
-		
-		void movePeao(Peao peao, int dado) {
-			// Verificar se a posição do peão é válida
-			if (peao.posicao == null) {
-				throw new IllegalArgumentException("Posição inválida do peão");
-			}
+public class TableManager {
+    private static TableManager instance;
+    private Tabuleiro tabuleiro;
+    private List<Peao> peoes;
 
-			for (int i = 0; i < dado; i++) {
-				peao.posicao.peoes.remove(peao);
-				if (peao.posicao.proximo.equals(tabuleiro.tabuleiroBasico[casaInicial[peao.cor]])) {
-					// Entra na reta final
-					peao.posicao = tabuleiro.retaFinal[0];
-					tabuleiro.retaFinal[0].peoes.add(peao);
-				}
-				else {
-					// Anda para frente
-					peao.posicao = peao.posicao.proximo;
-					peao.posicao.proximo.peoes.add(peao);
-				}
-			}
-		}
+    private TableManager() {
+        tabuleiro = new Tabuleiro();
+        peoes = new ArrayList<>();
+        criaPeoes();
+    }
+
+    public static TableManager getInstance() {
+        if (instance == null) {
+            instance = new TableManager();
+        }
+        return instance;
+    }
+
+    private void criaPeoes() {
+        for (Cor cor : Cor.values()) {
+            for (int i = 0; i < 4; i++) {
+                Peao peao = new Peao(cor);
+                peoes.add(peao);
+                tabuleiro.adicionaPeao(peao, cor.getCasaDeSaida());
+            }
+        }
+    }
+
+    public boolean movimentaPeao(Peao peao, int casas) {
+        Tile casaAtual = peao.getPosicao();
+
+        for (int i = 0; i < casas; i++) {
+            casaAtual = casaAtual.getProximo();
+            if (casaAtual.isBarreira()) {
+                return true;
+            }
+
+            casaAtual.adicionaPeao(peao);
+        }
+
+        if (casaAtual.getTipo().equals("comum") && casaAtual.possuiPeaoDeOutraCor(peao.getCor())) {
+            casaAtual.removePeao(casaAtual.primeiroPeao());
+        }
+        return true;
+    }
 }

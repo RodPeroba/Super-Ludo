@@ -1,9 +1,19 @@
-package Model;
-
 public enum Cor {
-	azul(1),vermelho(2),amarelo(3),verde(4);
+    AZUL(0, 0), VERMELHO(1, 13), AMARELO(2, 26), VERDE(3, 39);
 
-	Cor(int i) {
+    private final int valor;
+    private final int casaDeSaida;
 
-	}
+    Cor(int valor, int casaDeSaida) {
+        this.valor = valor;
+        this.casaDeSaida = casaDeSaida;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public int getCasaDeSaida() {
+        return casaDeSaida;
+    }
 }

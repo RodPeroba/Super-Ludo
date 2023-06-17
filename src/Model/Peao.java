@@ -1,18 +1,22 @@
 package Model;
 
 public class Peao {
-		protected int cor;
-		protected Tile posicao; 
-		
-		protected Peao(int cor) {
-			this.cor = cor;
-		}
-		
-		public static Peao criarPeao(int cor) {
-			return new Peao(cor);
-		}
+    private Cor cor;
+    private Tile posicao; 
 
-		public int getCor() {
-			return cor;
-		}
+    public Peao(Cor cor) {
+        this.cor = cor;
+    }
+
+    public Cor getCor() {
+        return cor;
+    }
+
+    public Tile getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(Tile posicao) {
+        this.posicao = posicao;
+    }
 }
