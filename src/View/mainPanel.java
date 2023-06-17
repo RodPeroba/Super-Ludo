@@ -1,55 +1,55 @@
 package View;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-/**
- * O painel principal da aplicação que contém o tabuleiro e o dado.
- */
-public class MainPanel extends JPanel {
-	
-	private Image boardImage;
-	private Graphics2D graphics;
+import Controller.*;
 
-	/**
-	 * Cria um novo painel principal.
-	 */
+public class MainPanel extends JPanel{
+	
+	Image imagem;
+	Graphics2D g2d;
+	DadoDisplay dadoDisplay = new DadoDisplay();
+	Controller controller = Controller.getController();
+	
 	public MainPanel() {
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screenSize = toolkit.getScreenSize();
-		setBounds(0, 0, screenSize.width, screenSize.height);
-	}
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension screenSize = tk.getScreenSize();
+		setBounds(0,0, screenSize.width, screenSize.height);
+		setLayout(null);
+		dadoDisplay.setPreferredSize(new Dimension(200,200));
+		add(dadoDisplay);
 		
-	@Override
+	
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		graphics = (Graphics2D) g;
+		
+		g2d = (Graphics2D) g;
 		try {
-			boardImage = ImageIO.read(new File ("src/TabuleiroLudo.jpg"));
+		
+			imagem = ImageIO.read(new File ("src/TabuleiroLudo.jpg"));
 		}
 		catch(IOException e){
-			showErrorMessage(e);
+			System.out.println(e.getMessage());
 			System.exit(1);
 		}
-		graphics.drawImage(boardImage, 0, 0, 660, 660, null);
+		g2d.drawImage(imagem,0,0,660,660,null);
+		
+		controller.drawPeoes(g2d);
 	}
 	
-	/**
-	 * Desenha o dado na tela.
-	 * @param dice a imagem do dado a ser desenhada.
-	 */
-	public void drawDice(Image dice) {
-		graphics.drawImage(dice, 450, 850, 200, 200, null);
+	void drawPlayer(int posX, int posY, Color cor) {
+		Ellipse2D player;
+		player = new Ellipse2D.Float(posX, posY, 50, 50);
+		g2d.setColor(cor);
+		g2d.fill(player);
 	}
 
-	/**
-	 * Mostra uma mensagem de erro ao usuário.
-	 * @param e a exceção que causou o erro.
-	 */
-	private void showErrorMessage(Exception e) {
-		JOptionPane.showMessageDialog(this, "Ocorreu um erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-	}
 }
