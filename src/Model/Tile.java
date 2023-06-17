@@ -6,10 +6,12 @@ import java.util.ArrayList;
 public class Tile {
     private List<Peao> peoes = new ArrayList<Peao>(); // Lista que contém os peões posicionados na casa
     private Tile proximo;
+    private int indice;
     private String tipo; // Tipo da casa: "comum", "saida", "inicial", "abrigo", "retaFinal"
 
-    public Tile(String tipo) {
+    public Tile(String tipo, int indice) {
         this.tipo = tipo;
+        this.indice = indice;
     }
 
     public boolean isEmpty() {
@@ -42,6 +44,10 @@ public class Tile {
 
     public String getTipo() {
         return this.tipo;
+    }
+
+    public int getIndice() {
+        return this.indice;
     }
 
     public boolean possuiPeaoDeOutraCor(Cor cor) {
