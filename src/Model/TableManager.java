@@ -8,7 +8,7 @@ public class TableManager {
     private Tabuleiro tabuleiro;
     private List<Peao> peoes;
 
-    private TableManager() {
+    public TableManager() {
         tabuleiro = new Tabuleiro();
         peoes = new ArrayList<>();
         criaPeoes();
