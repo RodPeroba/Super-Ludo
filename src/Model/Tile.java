@@ -23,7 +23,18 @@ public class Tile {
     }
 
     public boolean isBarreira() {
-        return peoes.size() == 2;
+        if (tipo.equals("comum")) {
+            Cor cor = peoes.get(0).getCor();
+
+            if (peoes.size() == 2) {
+                for (Peao peao: peoes) {
+                    if (!peao.getCor().equals(cor)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        } return false;
     }
 
     public boolean possuiUmPeao() {

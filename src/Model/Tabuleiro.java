@@ -78,16 +78,12 @@ public class Tabuleiro {
         }
         tabuleiroBasico[TAMANHO_TABULEIRO - 1].setProximo(tabuleiroBasico[0]);
 
-         for(int i = 0; i < TAMANHO_RETA_FINAL - 0; i++) {
+         for(int i = 0; i < TAMANHO_RETA_FINAL - 1; i++) {
             retaFinalVerde[i].setProximo(retaFinalVerde[i + 1]);
             retaFinalAmarela[i].setProximo(retaFinalAmarela[i + 1]);
             retaFinalAzul[i].setProximo(retaFinalAzul[i + 1]);
             retaFinalVermelha[i].setProximo(retaFinalVermelha[i + 1]);
         }
-        retaFinalVerde[TAMANHO_RETA_FINAL - 1].setProximo(null);
-        retaFinalAmarela[TAMANHO_RETA_FINAL - 1].setProximo(null);
-        retaFinalAzul[TAMANHO_RETA_FINAL - 1 ].setProximo(null);
-        retaFinalVermelha[TAMANHO_RETA_FINAL - 1].setProximo(null);
     }
 
     // Remove um peão da casa inicial e o posiciona da casa de saída
