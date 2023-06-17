@@ -3,7 +3,10 @@ package View;
 import java.awt.*;
 import javax.swing.*;
 
-public class MainWindow extends JFrame {
+import Controller.*;
+
+
+public class MainWindow extends JFrame implements IObserver{
 	
 	public final int LARGURA = 1200;
 	public final int ALTURA = 700;
@@ -46,5 +49,11 @@ public class MainWindow extends JFrame {
 	    saveButton.setBounds(in.left + 870, in.top + 150, BUTTON_WIDTH, BUTTON_HEIGHT);
 	    diceButton.setBounds(in.left + 870, in.top + 400, BUTTON_WIDTH, BUTTON_HEIGHT);
 	    
+	}
+
+	@Override
+	public void update(IObservable o) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,18 +1,21 @@
 package View;
 
 import java.awt.*;
-
+import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Controller.*;
+
 public class MainPanel extends JPanel{
 	
 	Image imagem;
 	Graphics2D g2d;
 	DadoDisplay dadoDisplay = new DadoDisplay();
+	Controller controller = Controller.getController();
 	
 	public MainPanel() {
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -21,6 +24,8 @@ public class MainPanel extends JPanel{
 		setLayout(null);
 		dadoDisplay.setPreferredSize(new Dimension(200,200));
 		add(dadoDisplay);
+		
+	
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -28,8 +33,8 @@ public class MainPanel extends JPanel{
 		
 		g2d = (Graphics2D) g;
 		try {
-			//TODO RESOLVER A PATH TER QUE SER COMPLETA
-			imagem = ImageIO.read(new File ("C:\\Users\\Rodrigo Peroba\\eclipse-workspace\\Ludo\\src\\TabuleiroLudo.jpg"));
+		
+			imagem = ImageIO.read(new File ("src/TabuleiroLudo.jpg"));
 		}
 		catch(IOException e){
 			System.out.println(e.getMessage());
@@ -37,10 +42,14 @@ public class MainPanel extends JPanel{
 		}
 		g2d.drawImage(imagem,0,0,660,660,null);
 		
-		
+		controller.drawPeoes(g2d);
 	}
 	
-	public void drawDice(Image dice) {
-		g2d.drawImage(dice, 450, 850,200,200, null);
+	void drawPlayer(int posX, int posY, Color cor) {
+		Ellipse2D player;
+		player = new Ellipse2D.Float(posX, posY, 50, 50);
+		g2d.setColor(cor);
+		g2d.fill(player);
 	}
+
 }

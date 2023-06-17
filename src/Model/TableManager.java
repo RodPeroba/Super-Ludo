@@ -1,10 +1,12 @@
 package Model;
 
+import java.awt.Color;
+
 public final class TableManager {
 
 		Tabuleiro tabuleiro;
 		int casa_inicial [] = {0,12,24,32}; 
-		
+		Color[] cores = {Color.yellow,Color.red,Color.blue,Color.green};
 		Peao jogadores[];
 		
 		public TableManager() {
@@ -12,7 +14,7 @@ public final class TableManager {
 			for(int i = 0;i < 4;i++) {
 				for(int j = 0;j < 4;j++) {
 					Tile casaDoPeao = tabuleiro.getCasa(casa_inicial[i], false);
-					Peao novoPeao = criaPeao(i,casaDoPeao);
+					Peao novoPeao = criaPeao(cores[i],casaDoPeao);
 					tabuleiro.adiciona_peao(novoPeao, i);
 					System.out.printf("Novo peao da cor %d na casa %d adicionado \n",i , casa_inicial[i]);
 					
@@ -21,13 +23,13 @@ public final class TableManager {
 			
 		}
 		
-		Peao criaPeao(int cor,Tile tile) {
+		Peao criaPeao(Color cor,Tile tile) {
 			Peao peao = new Peao(cor);
 			peao.posicao = tile;
 			return peao;
 			
 		}
-		
+		/*
 		void movePeao(Peao peao,int dado) {
 			
 			for (int i = 0;i < dado;i++) {
@@ -43,8 +45,9 @@ public final class TableManager {
 					peao.posicao.proximo.peoes.add(peao);
 				}
 			}
-			
-
 		}
-		
+		*/
+		public Tile[] getTabuleiro() {
+			return tabuleiro.tabuleiro_basico;
+		}
 }

@@ -1,15 +1,17 @@
 package Model;
 
+import java.awt.Color;
+
 public class Peao {
 
-		protected int cor;
+		protected Color cor;
 		protected Tile posicao; // Talvez tirar isso, vai dar um problema de mismatch
 		
-		protected Peao(int cor) {
+		protected Peao(Color cor) {
 			this.cor = cor;
 		}
 		
-		public int getCor() {
+		public Color getCor() {
 			return cor;
 		}
 
