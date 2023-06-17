@@ -18,6 +18,10 @@ public class Tile {
         return peoes.isEmpty();
     }
 
+    public int getNumeroDePeoes() {
+        return peoes.size();
+    }
+
     public boolean isBarreira() {
         return peoes.size() == 2;
     }

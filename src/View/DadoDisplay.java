@@ -24,7 +24,7 @@ public class DadoDisplay extends JComponent {
 		
 		try {
 			//TODO RESOLVER A PATH TER QUE SER COMPLETA
-			imagem = ImageIO.read(new File ("C:\\Users\\Rodrigo Peroba\\eclipse-workspace\\Ludo\\src\\Dado1.png"));
+			imagem = ImageIO.read(new File ("src/Dado1.png"));
 		}
 		catch(IOException e){
 			System.out.println(e.getMessage());
