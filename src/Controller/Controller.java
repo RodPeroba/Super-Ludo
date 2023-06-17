@@ -26,7 +26,7 @@ public class Controller implements IObservable{
 	}
 	
 	public void init() {
-		tableManager = new TableManager();
+		tableManager = TableManager.getInstance();
 	    mainWindow = new MainWindow();
 	    mainWindow.setVisible(true);
 	}
