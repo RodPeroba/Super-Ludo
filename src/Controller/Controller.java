@@ -29,7 +29,6 @@ public class Controller implements IObservable{
 		tableManager = new TableManager();
 	    mainWindow = new MainWindow();
 	    mainWindow.setVisible(true);
-	    tabuleiro_basico = tableManager.getTabuleiro();
 	}
 	
 	@Override
@@ -57,17 +56,5 @@ public class Controller implements IObservable{
 		o.update(controller);
 		
 	}
-
-	public void drawPeoes(Graphics2D g2d) {
-		//TODO otimizar
-		for (Tile tile : tabuleiro_basico) {
-			for (Peao peao : tile.peoes) {
-				Player player = new Player(100,100,peao.getCor());
-				System.out.println("Desenhando peao");
-			}
-		}
-	}
-
-	
 
 }

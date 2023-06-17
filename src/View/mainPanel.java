@@ -42,7 +42,6 @@ public class MainPanel extends JPanel{
 		}
 		g2d.drawImage(imagem,0,0,660,660,null);
 		
-		controller.drawPeoes(g2d);
 	}
 	
 	void drawPlayer(int posX, int posY, Color cor) {

@@ -1,3 +1,5 @@
+package Model;
+
 public enum Cor {
     AZUL(0, 0), VERMELHO(1, 13), AMARELO(2, 26), VERDE(3, 39);
 
