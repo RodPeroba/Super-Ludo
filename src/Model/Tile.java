@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.List;
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Tile {
@@ -8,7 +9,7 @@ public class Tile {
     private Tile proximo;
     private int indice;
     private String tipo; // Tipo da casa: "comum", "saida", "inicial", "abrigo", "retaFinal"
-
+    
     public Tile(String tipo, int indice) {
         this.tipo = tipo;
         this.indice = indice;
