@@ -1,6 +1,8 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import Controller.*;
@@ -34,6 +36,7 @@ public class MainWindow extends JFrame implements IObserver{
 	    panel.add(continueButton);
 	    //Salvar
 	    saveButton = new JButton("Salvar");
+			saveButton.addActionListener(new SaveListener(this));
 	    panel.add(saveButton);
 	    //À jogar
 	    

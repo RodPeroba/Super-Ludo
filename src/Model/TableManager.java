@@ -1,9 +1,13 @@
 package Model;
 
 import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TableManager {
+public class TableManager implements Serializable {
     private static TableManager instance;
     private Tabuleiro tabuleiro;
     private List<Peao> peoes;
@@ -110,5 +114,12 @@ public class TableManager {
             tabuleiro.voltaPeaoInicio(peaoCapturado);
         }
         return true;
+    }
+    
+    public void saveToFile(String filename) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            System.out.println(this.tabuleiro);
+            out.writeObject(this.tabuleiro);
+        }
     }
 }
