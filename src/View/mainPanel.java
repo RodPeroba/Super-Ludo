@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import Controller.*;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel implements IObserver{
 	
 	Image imagem;
 	Graphics2D g2d;
@@ -24,7 +24,7 @@ public class MainPanel extends JPanel{
 		setLayout(null);
 		dadoDisplay.setPreferredSize(new Dimension(200,200));
 		add(dadoDisplay);
-		
+	
 	
 	}
 	
@@ -49,6 +49,12 @@ public class MainPanel extends JPanel{
 		player = new Ellipse2D.Float(posX, posY, 50, 50);
 		g2d.setColor(cor);
 		g2d.fill(player);
+	}
+
+	@Override
+	public void update(IObservable o) {
+		repaint();
+		
 	}
 
 }

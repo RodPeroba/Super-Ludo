@@ -30,6 +30,10 @@ public class TableManager {
             }
         }
     }
+    
+    public List<Peao> getPeoes() {
+    	return peoes;
+    }
 
     public boolean movimentaPeao(Peao peao, int casas) {
         Tile casaAtual = peao.getPosicao();

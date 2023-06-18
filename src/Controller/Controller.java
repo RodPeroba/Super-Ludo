@@ -1,13 +1,16 @@
 package Controller;
-import java.awt.Graphics2D;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ButtonGroup;
 
 import Model.*;
 import View.*;
 
 
-public class Controller implements IObservable{
+public class Controller implements MouseListener, IObservable{
 	
 	TableManager tableManager = null;
 	MainWindow mainWindow = null;
@@ -15,7 +18,6 @@ public class Controller implements IObservable{
 	Tile[] tabuleiro_basico = null;
 	private static Controller controller = null;
 	private Dado dado = Dado.getDado();
-	
 	private Controller() {}
 
 	public static Controller getController() {
@@ -45,7 +47,8 @@ public class Controller implements IObservable{
 	public Object get(int i) {
 
 		if (i==1) {
-			return dado.dadoValor;
+			mainWindow.getButtonGroup().clearSelection();
+			return dado.dadoValor;//TODO passar um valor caso precise forçar o dado
 		}
 		
 		return -1;
@@ -54,6 +57,45 @@ public class Controller implements IObservable{
 	@Override
 	public void notify(IObserver o) {
 		o.update(controller);
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		Point location = e.getPoint();	
+		//Mouse 1
+		if (e.getButton() == 1) {
+			//TODO somente para teste isso, retirar depois
+			System.out.println(location);
+			PeaoDisplay peao = new PeaoDisplay((int)location.getX(),(int)location.getY(),Color.red);
+			mainWindow.drawPawn(peao);
+			mainWindow.update(this);
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

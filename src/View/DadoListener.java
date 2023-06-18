@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
-public class DadoListener implements ActionListener,IObserver {
+public class DadoListener implements ActionListener {
 	Component c;
 	MainPanel dicePanel = new MainPanel();	
 	Image imagem;
@@ -34,15 +34,8 @@ public class DadoListener implements ActionListener,IObserver {
 			System.exit(2);
 		}
 		
-		
-	}
-
-	@Override
-	public void update(IObservable o) {
-
-		diceValue = (int) o.get(1);
+		diceValue = (int) controller.get(1);
 		System.out.println(diceValue);
-		
 	}
 
 }
