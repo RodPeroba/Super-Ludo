@@ -19,8 +19,23 @@ public class Tile {
         return peoes.isEmpty();
     }
 
+    public int getNumeroDePeoes() {
+        return peoes.size();
+    }
+
     public boolean isBarreira() {
-        return peoes.size() == 2;
+        if (tipo.equals("comum")) {
+            Cor cor = peoes.get(0).getCor();
+
+            if (peoes.size() == 2) {
+                for (Peao peao: peoes) {
+                    if (!peao.getCor().equals(cor)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        } return false;
     }
 
     public boolean possuiUmPeao() {
