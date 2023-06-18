@@ -6,6 +6,8 @@ public class GameState implements Serializable {
     // Campos para o estado do jogo, por exemplo:
     private Tabuleiro tabuleiro;
     private Peao[] peoes;
+    
+
     // etc...
 
     // Métodos para salvar e carregar o estado do jogo:

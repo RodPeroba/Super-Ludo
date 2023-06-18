@@ -1,7 +1,7 @@
 package Model;
 
 public enum Cor {
-    AZUL(0, 0), VERMELHO(1, 13), AMARELO(2, 26), VERDE(3, 39);
+    VERDE(0, 0), AMARELO(1, 13), AZUL(2, 26), VERMELHO(3, 39);
 
     private final int valor;
     private final int casaDeSaida;

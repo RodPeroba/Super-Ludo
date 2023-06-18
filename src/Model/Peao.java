@@ -4,8 +4,9 @@ public class Peao {
     private Cor cor;
     private Tile posicao; 
 
-    public Peao(Cor cor) {
+    public Peao(Cor cor, Tile posicao) {
         this.cor = cor;
+        this.posicao = posicao;
     }
 
     public Cor getCor() {
