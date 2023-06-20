@@ -32,6 +32,10 @@ public class TableManager implements Serializable {
             tabuleiro.getInicioVermelho()[i].adicionaPeao(new Peao(Cor.VERMELHO, tabuleiro.getInicioVermelho()[i]));
         }
     }
+    
+    public List<Peao> getPeoes() {
+    	return peoes;
+    }
 
     public boolean validaMovimento(Peao peao, int casas) {
     Tile tileAtual = peao.getPosicao();
