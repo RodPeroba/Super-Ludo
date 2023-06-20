@@ -17,6 +17,13 @@ public class Dado {
 
 	}
 	
+	public int rolaDado(int valorForcado) {
+		
+		dadoValor =  valorForcado;
+		return dadoValor;
+
+	}
+	
 	public static Dado getDado() {
 		
 		if (dado==null) {

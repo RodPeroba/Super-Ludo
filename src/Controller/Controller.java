@@ -2,8 +2,10 @@ package Controller;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 
 import Model.*;
@@ -17,6 +19,8 @@ public class Controller implements MouseListener, IObservable{
 	List<IObserver> observers=new ArrayList<IObserver>();
 	List<Peao> peoes;
 	Tile[] tabuleiro_basico = null;
+	OrdemJogadores ordemJogadores = new OrdemJogadores();
+	public Jogador jogadorDaVez = null;
 
 	private int[][] tabelaPosicao = {{360,70},{360,110},{360,150},{360,190},{360,230},
 									 {400,270},{440,270},{480,270},{520,270},{560,270},{600,270},{600,310},{600,350},
@@ -44,8 +48,13 @@ public class Controller implements MouseListener, IObservable{
 	    mainWindow = new MainWindow();
 	    mainWindow.setVisible(true);
 	    
+	    /*
 	    tableManager.getPeoes();
 	    drawPawns();
+	    */
+	    
+	    povoaOrdemJogadores();
+	    jogadorDaVez = ordemJogadores.getPrimeiro();
 	}
 	
 	@Override
@@ -61,11 +70,14 @@ public class Controller implements MouseListener, IObservable{
 	@Override
 	public Object get(int i) {
 
-		if (i==1) {
+		if (i==1) { // Rolamento do dado
+			Enumeration<AbstractButton> buttons = mainWindow.choseDiceValue.getElements();
 			mainWindow.getButtonGroup().clearSelection();
-			return dado.dadoValor;//TODO passar um valor caso precise forçar o dado
+			return dado.rolaDado();//TODO passar um valor caso precise forçar o dado
 		}
-		
+		if (i==2) { // Retorna o valor do dado
+			return dado.dadoValor;
+		}
 		return -1;
 	}
 
@@ -74,6 +86,15 @@ public class Controller implements MouseListener, IObservable{
 		o.update(controller);
 		
 	}
+	
+	@Override
+	public void notifyAll(IObserver[] o) {
+		for (IObserver observer:o) {
+			observer.update(controller);
+		}
+		
+	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -81,11 +102,12 @@ public class Controller implements MouseListener, IObservable{
 		Point location = e.getPoint();	
 		//Mouse 1
 		if (e.getButton() == 1) {
-			//TODO somente para teste isso, retirar depois
-			System.out.println(location);
-			PeaoDisplay peao = new PeaoDisplay((int)location.getX(),(int)location.getY(),Color.red);
+			
+			PeaoDisplay peao = new PeaoDisplay((int)location.getX(),(int)location.getY(),jogadorDaVez.cor);
 			mainWindow.drawPawn(peao);
 			mainWindow.update(this);
+			
+			jogadorDaVez = jogadorDaVez.proxJogador;
 		}
 		
 	}
@@ -114,6 +136,12 @@ public class Controller implements MouseListener, IObservable{
 		
 	}
 	
+	private void povoaOrdemJogadores() {
+		Color cores[] = {Color.green,Color.yellow,Color.blue,Color.red};
+		for (int i = 0;i < 4;i++) {
+			ordemJogadores.insere(cores[i]);
+		}
+	}
 	private void drawPawns() {
 		/*
 		for (Peao pawn:peoes) {

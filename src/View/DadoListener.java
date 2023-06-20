@@ -26,14 +26,6 @@ public class DadoListener implements ActionListener {
 		System.out.println("Dado jogado");
 		//Selecionar o valor do dado
 		
-		try {
-			imagem = ImageIO.read(new File("src/Dado1.png"));
-		}
-		catch(IOException e1) {
-			System.out.println(e1.getMessage());
-			System.exit(2);
-		}
-		
 		diceValue = (int) controller.get(1);
 		System.out.println(diceValue);
 	}

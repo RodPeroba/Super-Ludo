@@ -76,4 +76,10 @@ public class GameController implements IObservable{
 		
 	}
 
+	@Override
+	public void notifyAll(IObserver[] o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

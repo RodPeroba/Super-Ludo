@@ -28,6 +28,5 @@ public class PeaoDisplay extends JComponent {
 		player = new Ellipse2D.Float(posX, posY, size, size);
 		g2d.setColor(cor);
 		g2d.fill(player);
-		System.out.println("Peao display paintComponent foi chamado");
 	}
 }

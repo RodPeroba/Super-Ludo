@@ -24,8 +24,7 @@ public class MainPanel extends JPanel implements IObserver{
 		setLayout(null);
 		dadoDisplay.setPreferredSize(new Dimension(200,200));
 		add(dadoDisplay);
-	
-	
+
 	}
 	
 	public void paintComponent(Graphics g) {
