@@ -1,4 +1,10 @@
 package Controller;
+
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +13,12 @@ import Model.*;
 import View.*;
 
 
-public class Controller implements IObservable{
+public class Controller {
 	
 	TableManager tableManager = null;
+	TabuleiroWindow tabuleiroWindow = null;
 	MainWindow mainWindow = null;
+	HomeWindow homeWindow = null;
 	List<IObserver> observers=new ArrayList<IObserver>();
 	Tile[] tabuleiro_basico = null;
 	private static Controller controller = null;
@@ -26,35 +34,24 @@ public class Controller implements IObservable{
 	}
 	
 	public void init() {
+		// mainWindow = new MainWindow();
+		homeWindow = new HomeWindow();
+		homeWindow.setVisible(true);
+		// mainWindow.setVisible(true);
 		tableManager = TableManager.getInstance();
-	    mainWindow = new MainWindow();
-	    mainWindow.setVisible(true);
+	}
+
+	public void iniciarPartida() {
+		homeWindow.setVisible(false);
+		tableManager.iniciaPartida();
+		setarTabuleiro();
 	}
 	
-	@Override
-	public void addObserver(IObserver o) {
-		observers.add(o);
-	}
 
-	@Override
-	public void removeObserver(IObserver o) {
-		observers.remove(o);
-	}
+	public void setarTabuleiro() {
+		tabuleiroWindow = new TabuleiroWindow(1);
+		tabuleiroWindow.setVisible(true);
 
-	@Override
-	public Object get(int i) {
-
-		if (i==1) {
-			return dado.dadoValor;
-		}
-		
-		return -1;
-	}
-
-	@Override
-	public void notify(IObserver o) {
-		o.update(controller);
-		
 	}
 
 }

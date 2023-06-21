@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -8,19 +9,19 @@ import javax.swing.*;
 import Controller.*;
 
 
-public class MainWindow extends JFrame implements IObserver{
+public class MainWindow extends JFrame implements ActionListener {
 	
 	public final int LARGURA = 1200;
 	public final int ALTURA = 700;
 	public final int BUTTON_HEIGHT = 40;
 	public final int BUTTON_WIDTH = 120;
+	private JButton newGameButton, continueButton, saveButton, diceButton;
 	
 	JPanel panel = new MainPanel();
 	
 	public MainWindow() {
 		super();
 
-		JButton newGameButton, continueButton, saveButton, diceButton;
 	    setTitle("Ludo");
 	    setSize(LARGURA, ALTURA);
 	    setLocationRelativeTo(null);
@@ -30,6 +31,7 @@ public class MainWindow extends JFrame implements IObserver{
 	    
 	    //NovoJogo
 	    newGameButton = new JButton("Novo Jogo");
+			newGameButton.addActionListener(this);
 	    panel.add(newGameButton);
 	    //CarregarJogo
 	    continueButton = new JButton("Carregar Jogo");
@@ -51,12 +53,13 @@ public class MainWindow extends JFrame implements IObserver{
 	    continueButton.setBounds(in.left + 870, in.top + 100, BUTTON_WIDTH, BUTTON_HEIGHT);
 	    saveButton.setBounds(in.left + 870, in.top + 150, BUTTON_WIDTH, BUTTON_HEIGHT);
 	    diceButton.setBounds(in.left + 870, in.top + 400, BUTTON_WIDTH, BUTTON_HEIGHT);
-	    
-	}
 
-	@Override
-	public void update(IObservable o) {
-		// TODO Auto-generated method stub
-		
+	}
+	    
+			public void actionPerformed(ActionEvent e) {
+				Object obj = e.getSource();
+				if (obj.equals(newGameButton)) {
+					Controller.getController().iniciarPartida();
+				}
 	}
 }

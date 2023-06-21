@@ -1,0 +1,72 @@
+package View;
+
+import javax.swing.*;
+import Controller.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class HomeWindow extends JFrame implements ActionListener{ 
+	final int ALTURA = 250;
+	final int COMPRIMENTO = 250;
+	final int ESPACO = 20;
+	private JLabel load_error;
+    private JButton botaoNovaPartida, botaoCarregarPartida;
+    private Dimension gap;
+    Color backgroundColor = new Color(100, 100, 100);
+
+	public HomeWindow() {
+		
+		// Confugura��es iniciais
+		setTitle("Ludo");
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension screenSize = tk.getScreenSize();
+		int x = (screenSize.width - COMPRIMENTO) / 2;
+		int y = (screenSize.height - ALTURA) / 2;
+        setBounds(x, y, COMPRIMENTO, ALTURA);    
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(backgroundColor);
+        
+        // Inicializa��o dos componentes Swing
+        gap = new Dimension(0,20);
+        
+        load_error = new JLabel("Erro ao carregar partida", SwingConstants.CENTER);
+        load_error.setForeground(new Color(189, 68, 28));
+        load_error.setAlignmentX(Component.CENTER_ALIGNMENT);
+        load_error.setVisible(false);
+        
+        botaoNovaPartida = new JButton("Nova Partida");
+        botaoNovaPartida.addActionListener(this);
+        botaoNovaPartida.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botaoCarregarPartida = new JButton("Carregar Partida");
+        botaoCarregarPartida.addActionListener(this);
+        botaoCarregarPartida.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        
+        // Arranjo dos componentes na tela inicial
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        add(Box.createRigidArea(gap));
+        add(Box.createRigidArea(gap));
+        add(Box.createRigidArea(gap));
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(botaoNovaPartida);
+        add(Box.createRigidArea(gap));
+        add(botaoCarregarPartida);
+
+        add(load_error);
+	}
+    
+    public void exibeErroCarregar() { load_error.setVisible(true); }
+    
+    public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+
+        if (obj.equals(botaoNovaPartida)) { 
+            Controller.getController().iniciarPartida();
+        } 
+        else if (obj.equals(botaoCarregarPartida)) {
+        	// Controller.getController().carregarPartida();
+        }
+    }
+}

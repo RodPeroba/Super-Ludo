@@ -16,9 +16,9 @@ public class Player extends JComponent {
 	Graphics2D g2d;
 	
 	public Player(int x, int y,Color color) {
-		posX = x;
-		posY = y;
-		cor = color;
+		this.posX = x;
+		this.posY = y;
+		this.cor = color;
 		setBounds(0,0, 660, 660);
 	}
 	

@@ -10,30 +10,30 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
-public class SaveListener implements ActionListener,IObserver {
+public class NewGameListener implements ActionListener,IObserver {
 	Component c;
 	MainPanel dicePanel = new MainPanel();	
 	Image imagem;
 	int diceValue = 0;
 	Controller controller = Controller.getController();
+  
 	
-	public SaveListener (Component x) {
+	public NewGameListener (Component x) {
 		c=x;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Salvar jogo...");
 
 		//Selecionar o valor do dado
 		
-		// try {
-		// 	imagem = ImageIO.read(new File("src/Dado1.png"));
-		// }
-		// catch(IOException e1) {
-		// 	System.out.println(e1.getMessage());
-		// 	System.exit(2);
-		// }
+		try {
+			imagem = ImageIO.read(new File("src/Dado1.png"));
+		}
+		catch(IOException e1) {
+			System.out.println(e1.getMessage());
+			System.exit(2);
+		}
 		
 		
 	}
@@ -41,8 +41,8 @@ public class SaveListener implements ActionListener,IObserver {
 	@Override
 	public void update(IObservable o) {
 
-		// diceValue = (int) o.get(1);
-		// System.out.println(diceValue);
+		diceValue = (int) o.get(1);
+		System.out.println(diceValue);
 		
 	}
 

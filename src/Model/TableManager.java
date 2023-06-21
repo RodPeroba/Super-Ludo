@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.List;
+import java.util.Random;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -8,20 +9,52 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class TableManager implements Serializable {
+    private static final int NUMERO_JOGADORES = 4;
     private static TableManager instance;
     private Tabuleiro tabuleiro;
-    private List<Peao> peoes;
+    private Peao[] peoes;
+    private int jogadorDaVez;
+    // private enum posInicial {VERDE(x: 0, y: 0), AMARELO, AZUL, VERMELHO};
 
     private TableManager() {
         tabuleiro = new Tabuleiro();
-        peoes = new ArrayList<>();
     }
-
+    
     public static TableManager getInstance() {
         if (instance == null) {
             instance = new TableManager();
         }
         return instance;
+    }
+    
+    
+    public void iniciaPartida() {
+        tabuleiro.getTabuleiroBasico();
+        tabuleiro.getInicioVerde();
+        tabuleiro.getInicioAmarelo();
+        tabuleiro.getInicioAzul();
+        tabuleiro.getInicioVermelho();
+        tabuleiro.getRetaFinalVerde();
+        tabuleiro.getRetaFinalAmarela();
+        tabuleiro.getRetaFinalAzul();
+        tabuleiro.getRetaFinalVermelha();
+        Dado.getDado();
+        
+        peoes = new Peao[NUMERO_JOGADORES * 4];
+
+        // for (Cor cor : Cor.values()) {
+        //     peoes[i] = new Peao(cor, )
+        // }
+
+        // for (int i=0; i<NUMERO_JOGADORES * 4; i++) {
+        //     peoes[i] = new Peao(COR);
+        // }
+
+
+
+        if (jogadorDaVez < 0 ) {
+            this.jogadorDaVez = new Random().nextInt(4);
+        }
     }
 
     public void criaPeoes() {
@@ -114,6 +147,14 @@ public class TableManager implements Serializable {
             tabuleiro.voltaPeaoInicio(peaoCapturado);
         }
         return true;
+    }
+
+    public int[] getPosicaoJogadores() {
+        int posicoes[] = new int[NUMERO_JOGADORES];
+        for (int i=0; i<NUMERO_JOGADORES; i++) {
+			// posicoes[i] = peoes[i];
+		}
+		return posicoes;
     }
     
     public void saveToFile(String filename) throws IOException {
