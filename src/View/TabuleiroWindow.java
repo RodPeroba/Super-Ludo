@@ -21,8 +21,8 @@ import Model.Peao;
 public class TabuleiroWindow extends JFrame implements ActionListener, IObserver{
 	private Controller controller;
 	private Image tabuleiro, imagemDados[];
-  private ArrayList<Player> peoes;
-  final int NUMERO_JOGADORES = 4;
+	private ArrayList<Player> peoes = new ArrayList<Player>();
+	final int NUMERO_JOGADORES = 4;
 	private int jogadorDaVez, casaDaVez, dadoDaVez, saldoJogadores[], posJogadores[];
 	final int ALTURA = 700;
 	final int COMPRIMENTO = 1200;
@@ -60,7 +60,8 @@ public class TabuleiroWindow extends JFrame implements ActionListener, IObserver
     dadoDaVez = 1;
     	
 		for (int i=0; i<N_PINOS; i++) {
-			peoes[i] = new Player(50, 50, Color.RED);
+			Player peao = new Player (50,50,Color.RED);
+			peoes.add(peao);
 		}
     	
 		imagemDados = new Image[N_DADOS];
@@ -111,8 +112,8 @@ public class TabuleiroWindow extends JFrame implements ActionListener, IObserver
 		
 		g.setColor(Color.BLACK);
 	
-		for (int i=0; i<NUMERO_JOGADORES * 4; i++) {
-		peoes[i].paintComponent(g);
+		for (Player peao : peoes) {
+			peao.paintComponent(g);
 		}
 	}
 	
